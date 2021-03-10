@@ -1,0 +1,32 @@
+<div class='contextual'>
+  <%= link_to_if_authorized "Edit Bench", {:controller => 'benches', :action => 'edit_bench' }, :class => 'icon icon-edit' %>
+  <%= link_to_if_authorized "Delete Bench", {:controller => 'benches', :action => 'delete_bench'}, data: { confirm: "Are you sure?"}, :class => 'icon icon-del' %>
+</div>
+
+<h2>BenchesController#show_bench</h2>
+
+<h3>Bench informations</h3>
+<div class='box'>
+  <p>Name: <%= @bench.name %></p>
+  <p>VIN: <%= @bench.vin %></p>
+  <p>Platform: <%= @bench.platform %></p>
+</div>
+
+<div class='contextual'>
+  <%= link_to_if_authorized "Add ECU", {:controller => 'ecus', :action => 'new_ecu' }, :class => 'icon icon-add' %>
+</div>
+
+<h3>ECUs included</h3>
+<% @bench.ecus.each do |ecu| %>
+  <div class='box'>
+      <%= ecu.name %>
+      <%= ecu.partnumber %>
+      <%= ecu.bootloader %>
+      <%= ecu.sw_version %>
+      <%= ecu.hw_version %>
+      <div style="float:right;">
+        <%= link_to_if_authorized "", {:controller => 'ecus', :ecu => ecu.id, :action => 'edit_ecu' }, :class => 'icon icon-edit' %>
+        <%= link_to_if_authorized "", {:controller => 'ecus', :ecu => ecu.id, :action => 'delete_ecu'}, data: { confirm: "Are you sure?"}, :class => 'icon icon-del' %>
+      </div>
+  </div>
+<% end %>

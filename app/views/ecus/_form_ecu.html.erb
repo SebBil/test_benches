@@ -1,0 +1,26 @@
+<%= error_messages_for 'ecus' %>
+
+<div class="box">
+  <table summary="">
+    <tr>
+      <th><%= f.label :name, "Name" %></th>
+      <td><%= f.text_field :name, value: @ecu.name %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :partnumber, "Partnumber" %></th>
+      <td><%= f.text_field :partnumber, value: @ecu.partnumber %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :bootloader, "Bootloader" %></th>
+      <td><%= f.text_field :bootloader, value: @ecu.bootloader %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :sw_version, "Software version" %></th>
+      <td><%= f.text_field :sw_version, value: @ecu.sw_version %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :hw_version, "Hardware version" %></th>
+      <td><%= f.text_field :hw_version, value: @ecu.hw_version %></td>
+    </tr>
+  </table>
+</div>

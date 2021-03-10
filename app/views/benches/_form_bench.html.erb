@@ -1,0 +1,18 @@
+<%= error_messages_for 'benches' %>
+
+<div class="box">
+  <table summary="">
+    <tr>
+      <th><%= f.label :name, "Name" %></th>
+      <td><%= f.text_field :name, value: @bench.name %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :vin, "VIN" %></th>
+      <td><%= f.text_field :vin, value: @bench.vin %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :platform, "Platform" %></th>
+      <td><%= f.select :platform, [["Platform 1","Platform 1"], ["Platform 2", "Platform 2"], ["Platform 3", "Platform 3"]], selected: @bench.platform %></td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,6 @@
+<h2>BenchesController#edit_bench</h2>
+
+<%= form_with model: @benches do |f| %>
+<%= render :partial => 'form_bench', :locals => {:f => f} %>
+<%= submit_tag "Save" -%>
+<% end -%>

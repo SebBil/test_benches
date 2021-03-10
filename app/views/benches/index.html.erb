@@ -1,0 +1,21 @@
+<div class="contextual">
+  <%= link_to_if_authorized "New Bench", {:controller => 'benches', :action => 'new_bench' }, :class => 'icon icon-add' %>
+</div>
+
+<h2>Test Benches</h2>
+
+<% unless @benches.nil? -%>
+  <div class='box'>
+    <ul style="list-style-type:none;">
+      <% @benches.each do |bench| %>
+        <li>
+          <a href="/redmine/projects/<%= @project.identifier %>/benches/<%= bench.id %>">
+            <%= bench.name %>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% else %>
+  <p class='nodata'>"No data to display"</p>
+<% end %>
