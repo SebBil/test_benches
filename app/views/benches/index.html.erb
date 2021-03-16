@@ -9,7 +9,7 @@
     <ul style="list-style-type:none;">
       <% @benches.each do |bench| %>
         <li>
-          <a href="/redmine/projects/<%= @project.identifier %>/benches/<%= bench.id %>">
+          <a href="/redmine/projects/<%= bench.project_id %>/benches/<%= bench.id %>">
             <%= bench.name %>
           </a>
         </li>

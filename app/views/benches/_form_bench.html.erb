@@ -14,5 +14,8 @@
       <th><%= f.label :platform, "Platform" %></th>
       <td><%= f.select :platform, [["Platform 1","Platform 1"], ["Platform 2", "Platform 2"], ["Platform 3", "Platform 3"]], selected: @bench.platform %></td>
     </tr>
+    <tr>
+      <th></th>
+      <td><%= f.hidden_field :project_id, :value => params[:id]%> </td>
   </table>
 </div>

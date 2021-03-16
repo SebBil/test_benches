@@ -1,6 +1,6 @@
 <h2>BenchesController#new_bench</h2>
 
 <%= form_with model: @benches do |f| %>
-<%= render :partial => 'form_bench', :locals => {:f => f} %>
+<%= render :partial => 'form_bench', :locals => {:f => f}, :project_id => @project.identifier %>
 <%= submit_tag "Save" -%>
 <% end -%>

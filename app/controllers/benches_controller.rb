@@ -5,7 +5,13 @@ class BenchesController < ApplicationController
   before_action :find_project, :authorize
 
   def index
-    @benches = Bench.all
+    @sub_projects = @project.children
+    @benches = Bench.where(project_id: @project.identifier)
+    if @subprojects.nil?
+       @sub_projects.each do |sub|
+         @benches += Bench.where(project_id: sub.identifier)
+       end
+    end
   end
 
   def show_bench
@@ -13,18 +19,14 @@ class BenchesController < ApplicationController
   end
 
   def new_bench
-    @bench = Bench.new
+    @bench = Bench.new()
   end
 
   def create_bench
     @bench = Bench.new(bench_params)
     if @bench.save
-      # For assigning one bench to a specific project -> more investigation nedded
-      # @project.bench_id = @bench.id
-      # if @project.save
       flash[:notice] = 'Successfully created Bench'
-      redirect_to :action => 'index'#, :id => params[:id]
-      # end
+      redirect_to :action => 'index'
     else
       flash[:error] = 'Failed to create Bench. Please fill all fields.'
       render :action => 'new_bench'
@@ -67,7 +69,7 @@ class BenchesController < ApplicationController
   end
 
   def bench_params
-    params.permit(:name, :vin, :platform)
+    params.permit(:name, :vin, :platform, :project_id)
   end
 
 end
