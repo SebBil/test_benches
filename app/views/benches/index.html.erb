@@ -1,21 +1,66 @@
+<style>
+  #testbench {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  #testbench, th, td {
+    border: 1px solid black;
+    padding-top:6px;
+    padding-bottom:6px;
+  }
+
+  #testbench td { text-align:center;}
+
+  #testbench th {
+    padding-top:12px;
+    padding-bottom:12px;
+    background-color: #3d454c;
+    color:#fff;
+  }
+
+  #testbench tr:hover {background-color: #ddd;}
+
+  a:link {color:black;}
+
+  a:visited {color:black;}
+
+  a:hover {color:blue;}
+
+</style>
+
 <div class="contextual">
   <%= link_to_if_authorized "New Bench", {:controller => 'benches', :action => 'new_bench' }, :class => 'icon icon-add' %>
 </div>
 
 <h2>Test Benches</h2>
-
 <% unless @benches.nil? -%>
-  <div class='box'>
     <ul style="list-style-type:none;">
-      <% @benches.each do |bench| %>
-        <li>
-          <a href="/redmine/projects/<%= bench.project_id %>/benches/<%= bench.id %>">
-            <%= bench.name %>
-          </a>
-        </li>
-      <% end %>
+      <div class='box'>
+        <table id="testbench">
+          <tr>
+            <th>Testbench name</th>
+            <th>Related to Project</th>
+          </tr>
+          <% @benches.each do |bench| %>
+            <li>
+                  <tr>
+                    <td>
+                      <a href="/redmine/projects/<%= bench.project_id %>/benches/<%= bench.id %>">
+                        <%= bench.name %>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="/redmine/projects/<%= bench.project_id %>">
+                        <%= bench.project_id %>
+                      </a>
+                    </td>
+                  </tr>
+            </li>
+          <% end %>
+        </table>
+      </div>
     </ul>
-  </div>
 <% else %>
   <p class='nodata'>"No data to display"</p>
 <% end %>
